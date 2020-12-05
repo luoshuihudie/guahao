@@ -20,7 +20,7 @@
                     {{ csrf_field() }}
                     <div class="">
                         <span class="text-head">手机号</span>
-                        <input type="number" name="username" class="input" placeholder="请输入手机号" />
+                        <input type="number" name="username" class="input" placeholder="请输入手机号" required/>
                     </div>
                     <div class="">
                         <span class="text-head">验证码</span>
