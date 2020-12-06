@@ -13,3 +13,4 @@
 
 Route::get('/', 'TaskController@index');
 Route::post('task/add', 'TaskController@add');
+Route::get('task/send-code', 'TaskController@sendCode');

@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" type="text/css" media="all" />
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <link href="{{ URL::asset('css/font-awesome.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -20,11 +21,12 @@
                     {{ csrf_field() }}
                     <div class="">
                         <span class="text-head">手机号</span>
-                        <input type="number" name="username" class="input" placeholder="请输入手机号" required/>
+                        <input type="phone" id="username" name="username" class="input" placeholder="请输入手机号" required/>
+                        <span class="text-head" onclick="send()" id="code">发送验证码</span>
                     </div>
                     <div class="">
                         <span class="text-head">验证码</span>
-                        <input type="number" name="code" class="input" placeholder="请输入验证码"/>
+                        <input type="text" name="code" class="input" placeholder="请输入验证码"/>
                     </div>
                     <div class="">
                         <span class="text-head">挂号日期</span>
@@ -114,6 +116,21 @@
         for (var i=0; i< list.valueOf().list[select].subList.length; i++) {
             y.options.add(new Option(list.valueOf().list[select].subList[i].name, list.valueOf().list[select].subList[i].code));
         }
+    }
+
+    function send()
+    {
+        var phone = $('#username').val();
+        $.ajax({
+            url: "{{url('/task/send-code')}}",
+            data: {'phone': phone},
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                console.log('输出验证码数据');
+                console.log(data);
+            }
+        })
     }
 </script>
 </html>

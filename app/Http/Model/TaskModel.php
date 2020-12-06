@@ -8,5 +8,5 @@ class TaskModel extends Model
 {
     protected $table = 'guahao';
     public $timestamps = true;
-    protected $fillable = ['username'];
+    protected $fillable = ['username', 'date', 'code', 'duty_code', 'patient_name', 'first_dept_code', 'second_dept_code'];
 }

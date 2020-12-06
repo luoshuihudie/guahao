@@ -248,7 +248,7 @@ a.brand-logo {
     margin-bottom: 10px;
     margin-top: 5px;
     outline: none;
-    width: 100%;
+    width: 60%;
     height: 45px;
     background: var(--white-color);
     color: #000000;
@@ -482,5 +482,8 @@ span.pros span {
     .form-head {
         font-size: 28px;
     }
+}
+#code {
+    cursor:pointer;
 }
 /* responsive design */
