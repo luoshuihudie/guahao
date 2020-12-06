@@ -98,7 +98,8 @@
                 @foreach($task_list as $k => $v)
                     用户手机号：<span style="color: red">{{$v['username']}}</span>
                     就诊人名称：<span style="color: red">{{$v['patient_name']}}</span>
-                    <br>
+                    <span style="color: green; cursor: pointer" onclick="execCmd(this)" attr="{{$v['id']}}">执行</span>
+                    <br/>
                 @endforeach
             </div>
         </div>
@@ -124,6 +125,20 @@
         $.ajax({
             url: "{{url('/task/send-code')}}",
             data: {'phone': phone},
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                console.log('输出验证码数据');
+                console.log(data);
+            }
+        })
+    }
+
+    function execCmd(obj) {
+        id = $(obj).attr('attr');
+        $.ajax({
+            url: "{{url('/task/exec')}}",
+            data: {'id': id},
             type: "GET",
             dataType: "json",
             success: function(data) {

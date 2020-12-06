@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
@@ -25,6 +26,15 @@ class TaskController extends Controller
         $filter['hospital_id'] = 1;
         TaskModel::create($filter);
         return redirect()->action('TaskController@index');
+    }
+    public function exec(Request $request)
+    {
+        $id = $request->input(['id']);
+        //执行任务
+        $execCmd = 'source ~/Desktop/venv/bjguahao/bin/activate && python3 bjguahao-no-send.py ' . $id;
+        passthru($execCmd, $output2);
+        Log::info('输出抢票数据:' . json_encode($output2));
+        return $this->success();
     }
 
     public function msecTime() {
